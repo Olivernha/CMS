@@ -1,0 +1,52 @@
+<?php include "includes/admin_header.php" ?>
+<?php ob_start(); ?>
+<?php
+    if(!is_admin($_SESSION['username'])){
+        $_SESSION['username'] = null;
+        $_SESSION['firstname']= null;
+        $_SESSION['lastname'] = null;
+        $_SESSION['user_role'] = null;
+        header("Location: ./index.php");
+
+    }
+?>
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <?php include "includes/admin_nav.php" ?>
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Welcome to Admin
+                        <small>Author</small>
+                    </h1>
+                    <?php
+                    if(isset($_GET['source'])){
+                        $source=escape($_GET['source']);
+                    }
+                    else{
+                        $source='';
+                    }
+                    switch ($source){
+                        case 'add_user': include "includes/add_user.php"; break;
+                        case 'edit_user': include "includes/edit_user.php"; break;
+                        case 50:  echo "Nice 50"; break;
+                        default: include "includes/view_all_users.php";
+                    }
+                    ?>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+    <?php include "includes/admin_footer.php" ?>
