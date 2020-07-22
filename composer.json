@@ -1,0 +1,17 @@
+{
+    "name": "acer/cms",
+    "require": {
+        "phpmailer/phpmailer": "^6.1"
+    },
+    "autoload": {
+        "classmap": [
+            "Classes"
+        ]
+    },
+    "authors": [
+        {
+            "name": "oliver",
+            "email": "nayhtetaung201733@gmail.com"
+        }
+    ]
+}
