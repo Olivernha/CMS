@@ -1,5 +1,5 @@
 # CMS-
 Project 1
-My First Project
+Mini Project 2
 
 In Progress
