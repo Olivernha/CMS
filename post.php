@@ -53,11 +53,12 @@
                         <a href="#"><?php echo $post_title?></a>
                     </h2>
                     <p class="lead">
-                        by <a href="author_posts.php?user=<?php echo $post_user?>&p_id=<?php echo $post_id ?>"><?php echo $post_user?></a>
+<!--                        author_posts.php?user=nay&p_id=10-->
+                        by <a href="/cms/author_posts.php?user=<?php echo $post_user?>&p_id=<?php echo $post_id ?>"><?php echo $post_user?></a>
                     </p>
                     <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date?></p>
                     <hr>
-                    <img class="img-responsive" src="images/<?php echo $post_image?>" alt="">
+                    <img class="img-responsive" src="/cms/images/<?php echo imagePlaceholder($post_image);?>" alt="">
                     <hr>
                     <p><?php echo $post_content?></p>
                     <hr>
@@ -91,6 +92,7 @@
                 else{
                     echo "<script>alert('Fields cannot be empty')</script>";
                 }
+            }
             }
 
             ?>
@@ -143,7 +145,7 @@
                     </div>
                 </div>
 
-            <?php  }  } }
+            <?php  }  }
 
             else{
                 header:("Location:index.php");

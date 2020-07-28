@@ -1,5 +1,20 @@
 
 <?php
+function currentUser(){
+    if(isset($_SESSION['username'])){
+        return $_SESSION['username'];
+    }
+    return false;
+}
+
+function imagePlaceholder($image=''){
+    if(!$image){
+        return '3.jpg';
+    }
+    else{
+        return $image;
+    }
+}
 function redirect($location){
     return header("Location:".$location);
 //    exit;
