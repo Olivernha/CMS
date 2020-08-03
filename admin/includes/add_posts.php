@@ -1,22 +1,21 @@
 <?php
 if(isset($_POST['create_post'])){
     $post_title=escape($_POST['post_title']);
-    $post_user=escape($_POST['post_user']);
+    $post_user=explode(',',escape($_POST['post_user']));
+//    $user_id=escape($_POST['post_user']);
     $post_category_id=escape($_POST['post_category']);
     $post_status=escape($_POST['post_status']);
-    $post_image=escape($_FILES['image']['name']);
-    $post_image_temp=escape($_FILES['image']['tmp_name']);
-
+   $post_image=escape($_FILES['image']['name']);
+//    $post_image_temp=escape($_FILES['image']['tmp_name']);
     $post_tags=escape($_POST['post_tags']);
     $post_content=escape($_POST['post_content']);
     $post_date=date('d-m-y');
     //  $post_comment_count=4;
+    move_uploaded_file($_FILES['image']['tmp_name'], '../images/'.$_FILES['image']['name']);
 
-    move_uploaded_file($post_image_temp,"../images/$post_image");
 
-
-    $query="INSERT INTO posts(post_category_id,post_title,post_user,post_date,post_image,post_content,post_tags,post_status)";
-    $query .="VALUES({$post_category_id},'{$post_title}','{$post_user}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_status}')";
+    $query="INSERT INTO posts(post_category_id,user_id,post_title,post_user,post_date,post_image,post_content,post_tags,post_status)";
+    $query .="VALUES({$post_category_id},'{$post_user[1]}','{$post_title}','{$post_user[0]}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_status}')";
     $create_post_query=mysqli_query($connection,$query);
 
     confirm($create_post_query);
@@ -56,7 +55,8 @@ if(isset($_POST['create_post'])){
                 $user_id=escape($row['user_id']);
                 $username=escape($row['username']);
 
-                echo "<option value='{$username}'>{$username}</option>";
+                echo "<option value='$username,$user_id'>{$username}</option>";
+
             }
             ?>
 

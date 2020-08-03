@@ -10,6 +10,7 @@ $select_posts_by_id=mysqli_query($connection,$query);
 while($row=mysqli_fetch_assoc($select_posts_by_id)) {
     $post_id = escape($row['post_id']);
     $post_user = escape($row['post_user']);
+
     $post_title = escape($row['post_title']);
     $post_category_id = escape($row['post_category_id']);
     $post_status = escape($row['post_status']);
@@ -22,17 +23,16 @@ while($row=mysqli_fetch_assoc($select_posts_by_id)) {
 
 if(isset($_POST['update_post'])){
     $post_title=escape($_POST['post_title']);
-    $post_user=escape($_POST['post_user']);
+    $post_users =explode(",",$_POST['post_user']);
     $post_category_id=escape($_POST['post_category']);
     $post_status=escape($_POST['post_status']);
-    $post_image=escape($_FILES['image']['name']);
-    $post_image_temp=escape($_FILES['image']['tmp_name']);
-
+//    $post_image=escape($_FILES['image']['name']);
+//    $post_image_temp=escape($_FILES['image']['tmp_name']);
     $post_tags=escape($_POST['post_tags']);
     $post_content=escape($_POST['post_content']);
 
 
-    move_uploaded_file($post_image_temp,"../images/$post_image");
+    move_uploaded_file($_FILES['image']['tmp_name'], '../images/'.$_FILES['image']['name']);
 
     if(empty($post_image)){
         $query="Select * From posts where post_id={$edit_post_id}";
@@ -45,8 +45,9 @@ if(isset($_POST['update_post'])){
     $query="UPDATE posts SET";
     $query .=" post_title='{$post_title}',";
     $query .="post_category_id={$post_category_id},";
+    $query .="user_id=$post_users[1],";
     $query .="post_date=now(),";
-    $query .="post_user='{$post_user}',";
+    $query .="post_user='$post_users[0]',";
     $query .="post_status='{$post_status}',";
     $query .="post_tags='{$post_tags}',";
     $query .="post_content='{$post_content}',";
@@ -94,16 +95,16 @@ if(isset($_POST['update_post'])){
     <div class="form-group">
         <label for="users">Users</label>
         <select name="post_user" id="">
-            <?php echo "<option value='{$post_user}'>{$post_user}</option>"; ?>
+<!--           // --><?php //echo "<option value='{$post_user}'>{$post_user}</option>"; ?>
             <?php
-            $users_query="select * from users";
+            $users_query="Select * from users";
             $select_users=mysqli_query($connection,$users_query);
             confirm($select_users);
             while($row=mysqli_fetch_assoc($select_users)){
                 $user_id=escape($row['user_id']);
                 $username=escape($row['username']);
+                echo "<option value='$username,$user_id'> {$username} </option>";
 
-                echo "<option value='{$username}'>{$username}</option>";
             }
             ?>
 

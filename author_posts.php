@@ -51,7 +51,7 @@
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                 <hr>
-                <img class="img-responsive" src="images/<?php echo $post_image;?>" alt="">
+                <img class="img-responsive" src="/cms/images/<?php echo $post_image;?>" alt="" width="100%" height="100%">
                 <hr>
                 <p><?php echo $post_content ?></p>
 
@@ -86,9 +86,8 @@
                         die('QUERY FAILED' . mysqli_error($connection));
                     }
 
-
-
-                    $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";         $query .= "WHERE post_id = $the_post_id ";
+                    $query = "UPDATE posts SET post_comment_count = $comment_counts";
+                    $query .= "WHERE post_id = $the_post_id ";
                     $update_comment_count = mysqli_query($connection,$query);
 
 

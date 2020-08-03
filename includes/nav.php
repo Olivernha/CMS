@@ -54,13 +54,9 @@
                 </li>
                 <?php endif;?>
 
-                <li>
-                    <a href="/cms/admin">Admin</a>
-
-                </li>
 
                 <li class="<?php echo $registration_class ?>">
-                    <a href="/cms/registration.php">Registration</a>
+                    <a href="/cms/registration.php?lang=en">Registration</a>
                 </li>
                 <li class="<?php echo $contact_class ?>">
                     <a href="/cms/contact.php">Contact</a>
