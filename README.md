@@ -2,4 +2,8 @@
 
 Mini Project 2
 
-In Progress
+mailtrap
+
+Plunker with toastr 
+
+Status :In Progress
