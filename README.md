@@ -6,4 +6,6 @@ mailtrap
 
 Plunker with toastr 
 
-Status :In Progress
+Status : Completed
+
+See at http://practicalwebsite.epizy.com/cms/
